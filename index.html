@@ -4,17 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - ธนบัตร ริ้วทอง (Thanabut Rewtong)</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #e0f2fe;
-            --main-card: #ffffff;
-            --primary-color: #0284c7;
-            --accent-color: #38bdf8;
-            --dark-blue: #0f172a;
-            --text-dark: #334155;
-            --text-light: #64748b;
-            --border-color: #bae6fd;
+            --bg-grid: #e0f2fe;
+            --main-blue: #0284c7;
+            --accent-cyan: #38bdf8;
+            --dark-navy: #0f172a;
+            --border-blue: #7dd3fc;
+            --card-bg: #ffffff;
         }
 
         * {
@@ -25,37 +23,161 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-dark);
+            background-color: var(--bg-grid);
+            background-image: 
+                linear-gradient(to right, rgba(56, 189, 248, 0.15) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(56, 189, 248, 0.15) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--dark-navy);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 15px;
+            padding: 20px 10px;
         }
 
-        .portfolio-container {
+        /* Outer Frame */
+        .app-frame {
             width: 100%;
-            max-width: 950px;
-            background: var(--main-card);
-            border: 3px solid var(--primary-color);
-            box-shadow: 6px 6px 0px rgba(2, 132, 199, 0.3);
-            border-radius: 10px;
+            max-width: 960px;
+            background: #ffffff;
+            border: 3px solid var(--border-blue);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(2, 132, 199, 0.15);
             overflow: hidden;
             display: flex;
             flex-direction: column;
         }
 
-        /* OS Window Header */
-        .os-header {
-            background: var(--primary-color);
-            color: white;
-            padding: 10px 16px;
+        /* Top Header Bar */
+        .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 12px 20px;
+            background: #ffffff;
+            border-bottom: 2px solid #f0f9ff;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar-box {
+            width: 36px;
+            height: 36px;
+            background: #0ea5e9;
+            color: white;
+            font-weight: 700;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .title-text .sub {
+            font-size: 0.75rem;
+            color: #0284c7;
             font-weight: 600;
-            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+
+        .title-text .main {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark-navy);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chapter-dropdown {
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 2px solid var(--accent-cyan);
+            background: #f0f9ff;
+            color: #0369a1;
+            font-weight: 600;
+            font-size: 0.85rem;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .theme-toggle {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-cyan);
+            background: #f0f9ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: #0284c7;
+        }
+
+        /* Chapter Tabs Bar */
+        .tabs-bar {
+            display: flex;
+            gap: 6px;
+            padding: 10px 16px;
+            background: #ffffff;
+            overflow-x: auto;
+            border-bottom: 2px solid var(--border-blue);
+        }
+
+        .tab-item {
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: none;
+            background: #f0f9ff;
+            color: #0284c7;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .tab-item.active, .tab-item:hover {
+            background: #0284c7;
+            color: white;
+        }
+
+        /* Inner OS Window */
+        .inner-window-wrapper {
+            padding: 24px;
+            background: var(--bg-grid);
+            background-image: 
+                linear-gradient(to right, rgba(56, 189, 248, 0.15) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(56, 189, 248, 0.15) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .os-window {
+            background: #ffffff;
+            border: 3px solid var(--accent-cyan);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .os-window-header {
+            background: #0ea5e9;
+            padding: 8px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .window-dots {
@@ -64,53 +186,110 @@
         }
 
         .dot {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            display: inline-block;
         }
-        .dot-red { background: #ef4444; }
-        .dot-yellow { background: #f59e0b; }
-        .dot-green { background: #10b981; }
+        .dot-1 { background: #ff5f56; }
+        .dot-2 { background: #ffbd2e; }
+        .dot-3 { background: #27c93f; }
 
-        /* Chapter Navigation Tabs (10 Chapters) */
-        .chapter-nav {
+        .os-window-body {
+            padding: 40px 30px;
+            min-height: 380px;
             display: flex;
-            overflow-x: auto;
-            background: #f0f9ff;
-            padding: 10px;
-            gap: 8px;
-            border-bottom: 2px solid var(--border-color);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
-        .nav-btn {
-            background: white;
-            border: 2px solid var(--accent-color);
-            padding: 6px 14px;
-            border-radius: 6px;
-            cursor: pointer;
+        /* Slide Content Typography */
+        .faculty-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #e0f2fe;
+            color: #0284c7;
+            padding: 6px 16px;
+            border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
-            white-space: nowrap;
-            color: var(--dark-blue);
-            transition: all 0.2s;
+            margin-bottom: 20px;
         }
 
-        .nav-btn.active, .nav-btn:hover {
-            background: var(--primary-color);
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #0ea5e9;
+            margin-bottom: 16px;
+        }
+
+        .hero-desc {
+            max-width: 650px;
+            font-size: 1rem;
+            color: #475569;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .hero-desc strong {
+            color: #0284c7;
+        }
+
+        .tech-tags {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .tech-pill {
+            background: #f0f9ff;
+            border: 1px solid var(--border-blue);
+            color: #0284c7;
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .next-slide-btn {
+            background: #0ea5e9;
             color: white;
-            border-color: var(--primary-color);
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+            transition: transform 0.15s;
         }
 
-        /* Content Body Area */
-        .content-body {
-            padding: 30px;
-            min-height: 440px;
-            background: #ffffff;
+        .next-slide-btn:hover {
+            transform: translateY(-2px);
+            background: #0284c7;
         }
 
         .page-content {
             display: none;
+            width: 100%;
         }
 
         .page-content.active {
@@ -123,299 +302,249 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Typography & Components */
-        h1 { font-size: 2.2rem; color: var(--dark-blue); margin-bottom: 4px; }
-        h2 { font-size: 1.5rem; color: var(--primary-color); margin-bottom: 16px; border-bottom: 2px dashed var(--accent-color); padding-bottom: 6px; }
-        p { font-size: 1rem; line-height: 1.6; color: var(--text-dark); margin-bottom: 10px; }
-
-        .tag-badge {
-            display: inline-block;
-            background: #e0f2fe;
-            color: var(--primary-color);
-            padding: 4px 12px;
-            border-radius: 20px;
-            border: 1px solid var(--accent-color);
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .tag {
-            display: inline-block;
-            background: #f0f9ff;
-            color: var(--primary-color);
-            padding: 4px 10px;
-            border-radius: 4px;
-            border: 1px solid var(--accent-color);
-            font-size: 0.85rem;
-            margin: 3px;
-            font-weight: 600;
-        }
-
-        .grid-2 {
+        .content-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
+            text-align: left;
+            margin-top: 15px;
         }
 
         @media (max-width: 650px) {
-            .grid-2 { grid-template-columns: 1fr; }
+            .content-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2rem; }
+            .hero-subtitle { font-size: 1.3rem; }
         }
 
-        .code-box {
+        .code-block {
             background: #0f172a;
             color: #38bdf8;
             padding: 16px;
             border-radius: 8px;
             font-family: 'Fira Code', monospace;
             font-size: 0.85rem;
-            margin-top: 15px;
+            text-align: left;
             white-space: pre-wrap;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        /* Footer Controls */
-        .footer-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 24px;
-            background: #f8fafc;
-            border-top: 2px solid #e2e8f0;
-        }
-
-        .ctrl-btn {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: background 0.2s;
-        }
-
-        .ctrl-btn:hover {
-            background: #0369a1;
-        }
-
-        .ctrl-btn:disabled {
-            background: #cbd5e1;
-            cursor: not-allowed;
-        }
-
-        #pageIndicator {
-            font-weight: 600;
-            color: var(--text-light);
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
 
-<div class="portfolio-container">
-    <!-- OS Header -->
-    <div class="os-header">
-        <div class="window-dots">
-            <span class="dot dot-red"></span>
-            <span class="dot dot-yellow"></span>
-            <span class="dot dot-green"></span>
+<div class="app-frame">
+    <!-- Top Header Bar -->
+    <div class="top-bar">
+        <div class="user-info">
+            <div class="avatar-box">TB</div>
+            <div class="title-text">
+                <div class="sub">FULL PORTFOLIO // 10 CHAPTERS</div>
+                <div class="main">ธนบัตร ริ้วทอง (แบงค์)</div>
+            </div>
         </div>
-        <span>PORTFOLIO_OS_V10.EXE</span>
-        <span>คณะบริหารธุรกิจ</span>
+        <div class="header-actions">
+            <select class="chapter-dropdown" id="chapterSelect" onchange="goToPage(parseInt(this.value))">
+                <option value="1">บทที่ 1: หน้าหลัก (Cover)</option>
+                <option value="2">บทที่ 2: คำนำ (Preface)</option>
+                <option value="3">บทที่ 3: สารบัญ (Contents)</option>
+                <option value="4">บทที่ 4: ประวัติส่วนตัว (Profile)</option>
+                <option value="5">บทที่ 5: การศึกษา (Education)</option>
+                <option value="6">บทที่ 6: ทักษะ (Tech Skills)</option>
+                <option value="7">บทที่ 7: รางวัล (Certificates)</option>
+                <option value="8">บทที่ 8: กิจกรรม (Activities)</option>
+                <option value="9">บทที่ 9: ผลงาน (Projects)</option>
+                <option value="10">บทที่ 10: สรุป (Conclusion)</option>
+            </select>
+            <div class="theme-toggle">🌙</div>
+        </div>
     </div>
 
-    <!-- Chapter Navigation (10 Chapters) -->
-    <div class="chapter-nav">
-        <button class="nav-btn active" onclick="goToPage(1)">01. หน้าหลัก</button>
-        <button class="nav-btn" onclick="goToPage(2)">02. คำนำ</button>
-        <button class="nav-btn" onclick="goToPage(3)">03. สารบัญ</button>
-        <button class="nav-btn" onclick="goToPage(4)">04. ประวัติ</button>
-        <button class="nav-btn" onclick="goToPage(5)">05. การศึกษา</button>
-        <button class="nav-btn" onclick="goToPage(6)">06. ทักษะ</button>
-        <button class="nav-btn" onclick="goToPage(7)">07. รางวัล</button>
-        <button class="nav-btn" onclick="goToPage(8)">08. กิจกรรม</button>
-        <button class="nav-btn" onclick="goToPage(9)">09. ผลงาน</button>
-        <button class="nav-btn" onclick="goToPage(10)">10. สรุป</button>
+    <!-- Chapter Tabs Bar -->
+    <div class="tabs-bar">
+        <button class="tab-item active" onclick="goToPage(1)">1. ปก</button>
+        <button class="tab-item" onclick="goToPage(2)">2. คำนำ</button>
+        <button class="tab-item" onclick="goToPage(3)">3. สารบัญ</button>
+        <button class="tab-item" onclick="goToPage(4)">4. ประวัติ</button>
+        <button class="tab-item" onclick="goToPage(5)">5. การศึกษา</button>
+        <button class="tab-item" onclick="goToPage(6)">6. ทักษะ</button>
+        <button class="tab-item" onclick="goToPage(7)">7. รางวัล</button>
+        <button class="tab-item" onclick="goToPage(8)">8. กิจกรรม</button>
+        <button class="tab-item" onclick="goToPage(9)">9. ผลงาน</button>
+        <button class="tab-item" onclick="goToPage(10)">10. สรุป</button>
     </div>
 
-    <!-- Main Content Body (10 Pages) -->
-    <div class="content-body">
-        
-        <!-- บทที่ 1 -->
-        <div class="page-content active" id="page-1">
-            <div class="tag-badge">🎓 คณะเป้าหมาย: บริหารธุรกิจ</div>
-            <h1>ธนบัตร ริ้วทอง</h1>
-            <p style="font-size: 1.3rem; font-weight: 600; color: var(--primary-color);">Thanabut Rewtong (Bank)</p>
-            <p style="margin-top: 15px;">นักศึกษา ปวส.2 แผนกวิชาเทคโนโลยีธุรกิจดิจิทัล วิทยาลัยเทคนิคสมุทรสงคราม มุ่งมั่นนำทักษะการเขียนโค้ดและพัฒนาโปรแกรม เข้ามาประยุกต์ใช้เพื่อสร้างนวัตกรรมบริหารธุรกิจยุคใหม่</p>
-            <div style="margin-top: 20px;">
-                <span class="tag">Python</span>
-                <span class="tag">C++</span>
-                <span class="tag">C#</span>
-            </div>
-        </div>
-
-        <!-- บทที่ 2 -->
-        <div class="page-content" id="page-2">
-            <h2>02. PREFACE // คำนำสาย IT / Developer</h2>
-            <p>ในยุคดิจิทัลที่ขับเคลื่อนด้วยเทคโนโลยีและข้อมูล การบริหารธุรกิจจึงมิได้จำกัดอยู่เพียงแค่ตำราแบบเดิมอีกต่อไป ข้าพเจ้าในฐานะนักพัฒนาซอฟต์แวร์และนักศึกษาด้านเทคโนโลยีธุรกิจดิจิทัล เล็งเห็นถึงความสำคัญของการผสานรวมทักษะการเขียนโปรแกรม (Programming & Logic) เข้ากับกลยุทธ์การบริหารจัดการสมัยใหม่</p>
-            <p>พอร์ตโฟลิโอฉบับนี้จัดทำขึ้นเพื่อแสดงศักยภาพ ความตั้งใจ และผลงานเชิงประจักษ์ เพื่อก้าวสู่การศึกษาต่อใน<strong>คณะบริหารธุรกิจ</strong> โดยมุ่งหวังจะนำความรู้ด้านไอทีมาขับเคลื่อนองค์กรธุรกิจให้เติบโตอย่างยั่งยืน</p>
-        </div>
-
-        <!-- บทที่ 3 -->
-        <div class="page-content" id="page-3">
-            <h2>03. CONTENTS // สารบัญ</h2>
-            <div class="grid-2">
-                <div>
-                    <p><strong>01.</strong> หน้าหลัก (Cover)</p>
-                    <p><strong>02.</strong> คำนำ (Preface)</p>
-                    <p><strong>03.</strong> สารบัญ (Contents)</p>
-                    <p><strong>04.</strong> ประวัติส่วนตัว (Profile)</p>
-                    <p><strong>05.</strong> ประวัติการศึกษา (Education)</p>
+    <!-- Inner Grid & Window -->
+    <div class="inner-window-wrapper">
+        <div class="os-window">
+            <div class="os-window-header">
+                <div class="window-dots">
+                    <span class="dot dot-1"></span>
+                    <span class="dot dot-2"></span>
+                    <span class="dot dot-3"></span>
                 </div>
-                <div>
-                    <p><strong>06.</strong> ทักษะโปรแกรมมิ่ง (Tech Skills)</p>
-                    <p><strong>07.</strong> เกียรติบัตรและรางวัล (Certificates)</p>
-                    <p><strong>08.</strong> กิจกรรมที่เข้าร่วม (Activities)</p>
-                    <p><strong>09.</strong> ผลงานตัวอย่าง (Projects)</p>
-                    <p><strong>10.</strong> บทสรุปและกิตติกรรมประกาศ (Conclusion)</p>
-                </div>
+                <span>PORTFOLIO_DECK_10_CHAPTERS.EXE</span>
+                <span>SYSTEM READY</span>
             </div>
-        </div>
 
-        <!-- บทที่ 4 -->
-        <div class="page-content" id="page-4">
-            <h2>04. PROFILE // ประวัติส่วนตัว</h2>
-            <div class="grid-2">
-                <div>
-                    <p><strong>ชื่อ-นามสกุล:</strong> นายธนบัตร ริ้วทอง</p>
-                    <p><strong>ชื่อเล่น:</strong> แบงค์</p>
-                    <p><strong>วันเกิด:</strong> 08 มกราคม 2550 (อายุ 19 ปี)</p>
-                    <p><strong>นิสัยส่วนตัว:</strong> ใจเย็น, ร่าเริง, พร้อมเรียนรู้อยู่เสมอ</p>
-                    <p><strong>คติพจน์:</strong> "Continuous Learning & Smart Execution"</p>
+            <div class="os-window-body">
+                
+                <!-- Page 1 -->
+                <div class="page-content active" id="page-1">
+                    <div class="faculty-badge">🎓 คณะเป้าหมาย: บริหารธุรกิจ</div>
+                    <h1 class="hero-title">ธนบัตร ริ้วทอง</h1>
+                    <div class="hero-subtitle">Thanabut Rewtong (Bank)</div>
+                    <p class="hero-desc">
+                        นักศึกษา ปวส.2 แผนกวิชา <strong>เทคโนโลยีธุรกิจดิจิทัล</strong> วิทยาลัยเทคนิคสมุทรสงคราม มุ่งมั่นนำทักษะการเขียนโค้ดและพัฒนาโปรแกรม เข้ามาประยุกต์ใช้เพื่อสร้างนวัตกรรมบริหารธุรกิจยุคใหม่
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-pill">🔶 Python</span>
+                        <span class="tech-pill">&lt;/&gt; C++</span>
+                        <span class="tech-pill">🔮 C#</span>
+                    </div>
+                    <button class="next-slide-btn" onclick="goToPage(2)">เริ่มดูบทถัดไป →</button>
                 </div>
-                <div>
-                    <p><strong>📍 ข้อมูลการติดต่อ:</strong></p>
-                    <p>📱 โทรศัพท์: 062-853-9219</p>
-                    <p>✉️ อีเมล: bankpan.thanabat2549@gmail.com</p>
-                    <p>🏠 ที่อยู่: 183/4 บ.แพรกหนามแดง อ.อัมพวา จ.สมุทรสงคราม 75110</p>
-                    <p>💻 งานอดิเรก: ออกกำลังกาย, ศึกษาภาษาโค้ด (Python, C++, C#)</p>
+
+                <!-- Page 2 -->
+                <div class="page-content" id="page-2">
+                    <div class="faculty-badge">บทที่ 2 // คำนำ</div>
+                    <h2 style="font-size: 1.8rem; color: #0284c7; margin-bottom: 12px;">PREFACE</h2>
+                    <p class="hero-desc" style="text-align: left; max-width: 100%;">
+                        ในยุคดิจิทัลที่ขับเคลื่อนด้วยเทคโนโลยี ข้าพเจ้าเล็งเห็นถึงความสำคัญของการผสานรวมทักษะการเขียนโปรแกรม (Python, C++, C#) เข้ากับกลยุทธ์การบริหารจัดการสมัยใหม่ พอร์ตโฟลิโอฉบับนี้จัดทำขึ้นเพื่อนำเสนอประวัติ ผลงาน และความตั้งใจจริงในการเข้าศึกษาต่อใน <strong>คณะบริหารธุรกิจ</strong> เพื่อก้าวสู่การเป็นนักบริหารธุรกิจดิจิทัลในอนาคต
+                    </p>
+                    <button class="next-slide-btn" onclick="goToPage(3)">บทถัดไป: สารบัญ →</button>
                 </div>
-            </div>
-        </div>
 
-        <!-- บทที่ 5 -->
-        <div class="page-content" id="page-5">
-            <h2>05. EDUCATION // ประวัติการศึกษา</h2>
-            <div style="background: #f0f9ff; padding: 20px; border-radius: 8px; border-left: 4px solid var(--primary-color);">
-                <h3>ประกาศนียบัตรวิชาชีพชั้นสูง (ปวส.2)</h3>
-                <p><strong>แผนกวิชา:</strong> เทคโนโลยีธุรกิจดิจิทัล</p>
-                <p><strong>สถานศึกษา:</strong> วิทยาลัยเทคนิคสมุทรสงคราม</p>
-                <p style="margin-top: 10px; color: var(--text-light);">มุ่งเน้นการเรียนรู้ระบบสารสนเทศ การจัดการข้อมูลธุรกิจ การพัฒนาเว็บและแอปพลิเคชัน เพื่อตอบสนองความต้องการของโลกธุรกิจยุคดิจิทัล</p>
-            </div>
-        </div>
+                <!-- Page 3 -->
+                <div class="page-content" id="page-3">
+                    <div class="faculty-badge">บทที่ 3 // สารบัญ</div>
+                    <h2 style="font-size: 1.8rem; color: #0284c7; margin-bottom: 12px;">CONTENTS</h2>
+                    <div class="content-grid" style="width: 100%;">
+                        <div style="background: #f0f9ff; padding: 15px; border-radius: 8px;">
+                            <p><strong>01. COVER</strong> - หน้าหลัก</p>
+                            <p><strong>02. PREFACE</strong> - คำนำ</p>
+                            <p><strong>03. CONTENTS</strong> - สารบัญ</p>
+                            <p><strong>04. PROFILE</strong> - ประวัติส่วนตัว</p>
+                            <p><strong>05. EDUCATION</strong> - ประวัติการศึกษา</p>
+                        </div>
+                        <div style="background: #f0f9ff; padding: 15px; border-radius: 8px;">
+                            <p><strong>06. SKILLS</strong> - ทักษะโปรแกรมมิ่ง</p>
+                            <p><strong>07. CERTIFICATES</strong> - เกียรติบัตร</p>
+                            <p><strong>08. ACTIVITIES</strong> - กิจกรรม</p>
+                            <p><strong>09. PROJECTS</strong> - ผลงานตัวอย่าง</p>
+                            <p><strong>10. CONCLUSION</strong> - บทสรุป</p>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- บทที่ 6 -->
-        <div class="page-content" id="page-6">
-            <h2>06. TECH SKILLS // ทักษะและความสามารถพิเศษ</h2>
-            <p>ทักษะด้านภาษาคอมพิวเตอร์และเครื่องมือพัฒนาระบบ:</p>
-            <div style="margin: 15px 0;">
-                <span class="tag">Python</span>
-                <span class="tag">C++</span>
-                <span class="tag">C#</span>
-                <span class="tag">HTML / CSS / JS</span>
-                <span class="tag">Database Management</span>
-            </div>
-            <div class="code-box">
-// Developer Profile Class
-class ThanabutProfile {
-    string nickname = "Bank";
-    int age = 19;
+                <!-- Page 4 -->
+                <div class="page-content" id="page-4">
+                    <div class="faculty-badge">บทที่ 4 // ประวัติส่วนตัว</div>
+                    <h2 style="font-size: 1.8rem; color: #0284c7; margin-bottom: 12px;">PERSONAL PROFILE</h2>
+                    <div class="content-grid" style="width: 100%;">
+                        <div style="text-align: left;">
+                            <p><strong>ชื่อ-สกุล:</strong> นายธนบัตร ริ้วทอง (แบงค์)</p>
+                            <p><strong>วันเกิด:</strong> 08 มกราคม 2550 (อายุ 19 ปี)</p>
+                            <p><strong>นิสัยส่วนตัว:</strong> ใจเย็น, ร่าเริง</p>
+                            <p><strong>คติพจน์:</strong> พร้อมเรียนรู้และพัฒนาอยู่เสมอ</p>
+                        </div>
+                        <div style="text-align: left;">
+                            <p>📱 <strong>โทร:</strong> 062-853-9219</p>
+                            <p>✉️ <strong>อีเมล:</strong> bankpan.thanabat2549@gmail.com</p>
+                            <p>🏠 <strong>ที่อยู่:</strong> 183/4 บ.แพรกหนามแดง อ.อัมพวา จ.สมุทรสงคราม 75110</p>
+                            <p>🏃 <strong>งานอดิเรก:</strong> ออกกำลังกาย, ศึกษาภาษาโค้ด</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 5 -->
+                <div class="page-content" id="page-5">
+                    <div class="faculty-badge">บทที่ 5 // การศึกษา</div>
+                    <h2 style="font-size: 1.8rem; color: #0284c7; margin-bottom: 12px;">EDUCATION</h2>
+                    <div style="background: #f0f9ff; padding: 20px; border-radius: 8px; text-align: left; width: 100%;">
+                        <h3 style="color: #0284c7;">ประกาศนียบัตรวิชาชีพชั้นสูง (ปวส.2)</h3>
+                        <p><strong>แผนกวิชา:</strong> เทคโนโลยีธุรกิจดิจิทัล</p>
+                        <p><strong>สถานศึกษา:</strong> วิทยาลัยเทคนิคสมุทรสงคราม</p>
+                    </div>
+                </div>
+
+                <!-- Page 6 -->
+                <div class="page-content" id="page-6">
+                    <div class="faculty-badge">บทที่ 6 // ทักษะโปรแกรมมิ่ง</div>
+                    <h2 style="font-size: 1.8rem; color: #0284c7; margin-bottom: 12px;">PROGRAMMING SKILLS</h2>
+                    <div class="tech-tags">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">C++</span>
+                        <span class="tech-pill">C#</span>
+                    </div>
+                    <div class="code-block" style="width: 100%;">
+class StudentDeveloper {
+    string name = "Thanabut Rewtong";
     string major = "Digital Business Technology";
-    List&lt;string&gt; languages = {"Python", "C++", "C#"};
-}
-            </div>
-        </div>
-
-        <!-- บทที่ 7 -->
-        <div class="page-content" id="page-7">
-            <h2>07. CERTIFICATES // เกียรติบัตรและรางวัล</h2>
-            <div class="grid-2">
-                <div style="border: 1px solid var(--border-color); padding: 15px; border-radius: 8px;">
-                    <h3>📜 เกียรติบัตรทักษะวิชาชีพ</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 5px;">ผ่านการอบรมและพัฒนาทักษะด้านเทคโนโลยีดิจิทัลและระบบฐานข้อมูลธุรกิจ</p>
+    string goal = "Bachelor of Business Administration";
+};
+                    </div>
                 </div>
-                <div style="border: 1px solid var(--border-color); padding: 15px; border-radius: 8px;">
-                    <h3>📜 เกียรติบัตรการเขียนโปรแกรม</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 5px;">ได้รับรองความสามารถในการพัฒนาแอปพลิเคชันและเขียนโค้ดเบื้องต้น</p>
+
+                <!-- Page 7 -->
+                <div class="page-content" id="page-7">
+                    <div class="faculty-badge">บทที่ 7 // รางวัลและเกียรติบัตร</div>
+                    <h2 style="font-size: 1.8rem; color: #0284c7; margin-bottom: 12px;">CERTIFICATES</h2>
+                    <p class="hero-desc">เกียรติบัตรรับรองการเข้าร่วมกิจกรรมและการพัฒนาทักษะวิชาชีพทางด้านเทคโนโลยีดิจิทัล</p>
                 </div>
+
+                <!-- Page 8 -->
+                <div class="page-content" id="page-8">
+                    <div class="faculty-badge">บทที่ 8 // กิจกรรมที่เข้าร่วม</div>
+                    <h2 style="font-size: 1.8rem; color: #0284c7; margin-bottom: 12px;">ACTIVITIES</h2>
+                    <p class="hero-desc" style="text-align: left;">
+                        1. กิจกรรมสัมมนาและอบรมพัฒนาทักษะธุรกิจดิจิทัล<br>
+                        2. กิจกรรมส่งเสริมสุขภาพและการออกกำลังกายภายในวิทยาลัย
+                    </p>
+                </div>
+
+                <!-- Page 9 -->
+                <div class="page-content" id="page-9">
+                    <div class="faculty-badge">บทที่ 9 // ผลงานตัวอย่าง</div>
+                    <h2 style="font-size: 1.8rem; color: #0284c7; margin-bottom: 12px;">PROJECT SAMPLES</h2>
+                    <div style="background: #f0f9ff; padding: 20px; border-radius: 8px; text-align: left; width: 100%;">
+                        <h3>💻 Web App & Software Prototype</h3>
+                        <p>การพัฒนาโปรแกรมประยุกต์และเว็บแอปพลิเคชันสำหรับการจัดการธุรกิจดิจิทัล</p>
+                    </div>
+                </div>
+
+                <!-- Page 10 -->
+                <div class="page-content" id="page-10">
+                    <div class="faculty-badge">บทที่ 10 // บทสรุป</div>
+                    <h2 style="font-size: 1.8rem; color: #0284c7; margin-bottom: 12px;">CONCLUSION</h2>
+                    <p class="hero-desc">
+                        ขอขอบพระคุณคณะกรรมการทุกท่านที่สละเวลาพิจารณาแฟ้มสะสมผลงานฉบับนี้ ข้าพเจ้ามุ่งมั่นที่จะนำทักษะด้านไอทีและการบริหารไปต่อยอดให้เกิดประโยชน์สูงสุด
+                    </p>
+                    <h2 style="color: #0ea5e9; margin-top: 20px;">THANK YOU!</h2>
+                </div>
+
             </div>
         </div>
-
-        <!-- บทที่ 8 -->
-        <div class="page-content" id="page-8">
-            <h2>08. ACTIVITIES // กิจกรรมที่เข้าร่วม</h2>
-            <p><strong>1. โครงการพัฒนาศักยภาพนักศึกษาเทคโนโลยีธุรกิจดิจิทัล</strong><br>เข้าร่วมกิจกรรมสัมมนาเชิงปฏิบัติการ นำเทคโนโลยีมาต่อยอดกับแนวคิดทางธุรกิจ</p>
-            <p style="margin-top: 15px;"><strong>2. กิจกรรมจิตอาสาและพัฒนาชุมชน</strong><br>เข้าร่วมกิจกรรมบำเพ็ญประโยชน์และส่งเสริมการออกกำลังกายเพื่อสุขภาพภายในสถาบัน</p>
-        </div>
-
-        <!-- บทที่ 9 -->
-        <div class="page-content" id="page-9">
-            <h2>09. PROJECTS // ผลงานและโปรเจกต์ตัวอย่าง</h2>
-            <div style="background: #f8fafc; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0;">
-                <h3>💡 Digital Business & Application Prototype</h3>
-                <p style="margin-top: 8px;">พัฒนาระบบต้นแบบสำหรับการบริหารจัดการข้อมูลและร้านค้าออนไลน์ โดยประยุกต์ใช้ตรรกะการเขียนโปรแกรม ร่วมกับการวิเคราะห์ระบบธุรกิจเพื่อให้ใช้งานได้จริง</p>
-            </div>
-        </div>
-
-        <!-- บทที่ 10 -->
-        <div class="page-content" id="page-10">
-            <h2>10. CONCLUSION // บทสรุปและกิตติกรรมประกาศ</h2>
-            <p>ขอขอบพระคุณคณะกรรมการทุกท่านที่กรุณาพิจารณาแฟ้มสะสมผลงานฉบับนี้ ข้าพเจ้ามีความมุ่งมั่นและตั้งใจอย่างยิ่งที่จะศึกษาต่อในคณะบริหารธุรกิจ เพื่อนำความรู้ ทักษะทางด้านไอทีและการบริหารมาบูรณาการร่วมกัน และสร้างสรรค์ประโยชน์ให้แก่สังคมต่อไป</p>
-            <h3 style="text-align: center; color: var(--primary-color); margin-top: 30px;">THANK YOU FOR YOUR CONSIDERATION!</h3>
-        </div>
-
-    </div>
-
-    <!-- Footer Controls -->
-    <div class="footer-controls">
-        <button class="ctrl-btn" id="prevBtn" onclick="changePage(-1)">← ก่อนหน้า</button>
-        <span id="pageIndicator">หน้า 1 / 10</span>
-        <button class="ctrl-btn" id="nextBtn" onclick="changePage(1)">ถัดไป →</button>
     </div>
 </div>
 
 <script>
     let currentPage = 1;
-    const totalPages = 10;
-
-    function updatePage() {
-        document.querySelectorAll('.page-content').forEach((el, index) => {
-            el.classList.toggle('active', index + 1 === currentPage);
-        });
-
-        document.querySelectorAll('.nav-btn').forEach((btn, index) => {
-            btn.classList.toggle('active', index + 1 === currentPage);
-        });
-
-        document.getElementById('pageIndicator').innerText = `หน้า ${currentPage} / ${totalPages}`;
-        document.getElementById('prevBtn').disabled = currentPage === 1;
-        document.getElementById('nextBtn').disabled = currentPage === totalPages;
-    }
 
     function goToPage(page) {
         currentPage = page;
-        updatePage();
-    }
+        
+        // Update Content
+        document.querySelectorAll('.page-content').forEach((el, index) => {
+            el.classList.toggle('active', index + 1 === page);
+        });
 
-    function changePage(delta) {
-        if (currentPage + delta >= 1 && currentPage + delta <= totalPages) {
-            currentPage += delta;
-            updatePage();
-        }
-    }
+        // Update Tabs
+        document.querySelectorAll('.tab-item').forEach((btn, index) => {
+            btn.classList.toggle('active', index + 1 === page);
+        });
 
-    updatePage();
+        // Update Dropdown
+        document.getElementById('chapterSelect').value = page;
+    }
 </script>
 
 </body>
